@@ -8,9 +8,12 @@ app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get('/status', (req, res) => {
+app.post('/search_station', (req, res) => {
+  // Search for req.body.location
+  // and send back the names of the
+  // nearest stations
   res.send({
-    message: 'Hello World!'
+    locations: ['Tiel', 'Woerden']
   })
 })
 
