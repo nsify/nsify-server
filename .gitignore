@@ -8,6 +8,9 @@ yarn-error.log*
 # Old files
 *.old
 
+# Database files
+*.sqlite
+
 # Editor directories and files
 .idea
 .vscode

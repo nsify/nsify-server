@@ -2,19 +2,18 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const cors = require('cors')
 const morgan = require('morgan')
+const config = require('./config/config')
+const { sequelize } = require('./models')
 
 const app = express()
 app.use(morgan('combined'))
 app.use(bodyParser.json())
 app.use(cors())
 
-app.post('/search_station', (req, res) => {
-  // Search for req.body.location
-  // and send back the names of the
-  // nearest stations
-  res.send({
-    locations: ['Tiel', 'Woerden']
-  })
-})
+require('./routes')(app)
 
-app.listen(process.env.PORT || 8081)
+sequelize.sync()
+  .then(() => {
+    app.listen(config.port)
+    console.log(`Server running on port ${config.port}!`)
+  })
