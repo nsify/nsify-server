@@ -4,11 +4,15 @@ module.exports = (sequelize, DataTypes) =>
       type: DataTypes.STRING,
       unique: true
     },
-    city: {
+    code: {
       type: DataTypes.STRING,
       unique: false
     },
-    province: {
+    country: {
+      type: DataTypes.STRING,
+      unique: false
+    },
+    type: {
       type: DataTypes.STRING,
       unique: false
     }
