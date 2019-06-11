@@ -9,5 +9,9 @@ module.exports = {
       host: process.env.HOST || 'localhost',
       storage: './nsify.sqlite'
     }
+  },
+  nsapi: {
+    api_key: process.env.NS_API_KEY || '*******',
+    timeout: process.env.NS_API_TIMEOUT || 1000
   }
 }
