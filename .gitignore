@@ -11,6 +11,9 @@ yarn-error.log*
 # Database files
 *.sqlite
 
+# Environment file
+.env
+
 # Editor directories and files
 .idea
 .vscode
@@ -18,3 +21,4 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+vnode
