@@ -1,33 +1,27 @@
-// const { Station } = require('../models')
+const { Station } = require('../models')
+const { like } = require('sequelize').Op
 
 module.exports = {
   async search (req, res) {
+    let data = {}
+    data['stations'] = {}
     // Search for req.body.location
     // and send back the names of the
     // nearest stations
-    res.send({
-      stations:
-        {
-          'Tiel': {
-            name: 'Tiel',
-            city: 'Tiel',
-            province: 'Gelderland',
-            distance: '5km'
-          },
-          'Tiel Passewaaij': {
-            name: 'Tiel Passewaaij',
-            city: 'Tiel',
-            province: 'Gelderland',
-            distance: '12km'
-          },
-          'Woerden': {
-            name: 'Woerden',
-            city: 'Woerden',
-            province: 'Utrecht',
-            distance: '28km'
-          }
+    let stations = await Station.findAll({
+      where: {
+        name: {
+          [like]: `${req.body.location}%`
         }
+        // id: 1
+      },
+      limit: 10
     })
-    // res.send(station.toJSON())
+
+    // console.log(tmp.dataValues)
+    for (let i = 0; i < stations.length; i++) {
+      data['stations'][stations[i].dataValues.name] = stations[i].dataValues
+    }
+    res.send(data)
   }
 }
